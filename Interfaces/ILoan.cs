@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace LibraryManagment.Interfaces
 {
-    internal interface ILoan
+    public interface ILoan
     {
+        void AddLoan(Loan loan);
+        void UpdateLoan(Loan loan);
+        void DeleteLoan(int id);
+        Loan GetLoanById(int id);
+        List<Loan> GetAllLoans();
     }
 }

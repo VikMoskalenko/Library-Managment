@@ -11,7 +11,7 @@ namespace LibraryManagment.Interfaces
         void AddBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(int id);
-        Book GetBookId(int id);
+        Book GetBookById(int id);
         List<Book> GetAllBooks();
     }
 }
