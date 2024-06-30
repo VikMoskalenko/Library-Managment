@@ -1,4 +1,4 @@
-﻿using LibraryManagment;
+﻿using LibraryManagment.classes;
 using Microsoft.EntityFrameworkCore;
 
 public class LibraryContext : DbContext

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using LibraryManagment.classes;
+using LibraryManagment.Functionality;
+using LibraryManagment.Services;
 
 namespace LibraryManagment
 {
-     class Program
+    class Program
     {
         static void Main(string[] args)
         {
             var bookService = new BookService(new BookFunctionality(new LibraryContext()));
             var userService = new UserService(new UserFunctionality(new LibraryContext()));
-            var loanService = new LoanService(new LoaFunctionality(new LibraryContext()));
+            var loanService = new LoanService(new Functionality.LoaFunctionality(new LibraryContext()));
 
             while (true)
             {
@@ -17,8 +20,10 @@ namespace LibraryManagment
                 Console.WriteLine("1. Add book");
                 Console.WriteLine("2. View Books");
                 Console.WriteLine("3. Add User");
-                Console.WriteLine("4. View");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("4. View All Users");
+                Console.WriteLine("5. Borrow Book");
+                Console.WriteLine("6. View Loans.");
+                Console.WriteLine("7. Exit.");
                 Console.WriteLine("Choose an otion: ");
                 var choice = Console.ReadLine();
                 switch (choice)
@@ -36,6 +41,12 @@ namespace LibraryManagment
                         ViewUsers(userService);
                         break;
                     case "5":
+                        BorrowBook(loanService, bookService, userService);
+                        break;
+                    case "6":
+                        ViewLoans(loanService);
+                        break;
+                    case "7":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
@@ -98,5 +109,28 @@ namespace LibraryManagment
                 Console.WriteLine($"Name: {user.Name}, Email: {user.Email}");
             }
         }
+        static void BorrowBook(LoanService loanService,BookService bookService, UserService userService)
+        {
+            Console.Write("Enter user ID:");
+            var userId = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Book Id: ");
+            var bookId = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter a loan date (yyyy-mm-dd): ");
+            var loanDate = DateTime.Parse(Console.ReadLine());
+            var loan = new Loan { UserId= userId, BookId= bookId, LoanDate=loanDate };
+            loanService.AddLoan(loan);
+            Console.WriteLine("Book borrowed successfully");
+        }
+
+        static void ViewLoans(LoanService loanService)
+        {
+            var loans = loanService.GetAllLoans();
+            Console.WriteLine("Loans in the system: ");
+            foreach(var loan in loans)
+            {
+                Console.WriteLine($"LoanID: {loan.Id}, User Id: {loan.UserId}, Book Id: {loan.BookId}, Loan Date : {loan.LoanDate} ");
+            }
+        }
+
     }
 }

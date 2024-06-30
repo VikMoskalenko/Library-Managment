@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagment
+namespace LibraryManagment.classes
 {
-    public  class User
+    public class User
     {
         [Key]
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace LibraryManagment
         public string Name { get; set; }
         [Required]
         public string Email { get; set; }
-        public string Phone {  get; set; }
+        public string Phone { get; set; }
     }
 }

@@ -1,11 +1,12 @@
-﻿using LibraryManagment.Interfaces;
+﻿using LibraryManagment.classes;
+using LibraryManagment.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagment
+namespace LibraryManagment.Functionality
 {
     public class LoaFunctionality : ILoan
     {
@@ -13,7 +14,7 @@ namespace LibraryManagment
         public LoaFunctionality(LibraryContext context)
         {
 
-                _context = context; 
+            _context = context;
         }
         public void AddLoan(Loan loan)
         {
@@ -47,6 +48,6 @@ namespace LibraryManagment
             return _context.Loans.Find(id);
         }
 
-       
+
     }
 }

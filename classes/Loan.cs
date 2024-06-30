@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagment
+namespace LibraryManagment.classes
 {
     public class Loan
     {

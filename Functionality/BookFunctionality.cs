@@ -1,18 +1,20 @@
-﻿using LibraryManagment.Interfaces;
+﻿using LibraryManagment.classes;
+using LibraryManagment.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagment
+namespace LibraryManagment.Functionality
 {
     public class BookFunctionality : IBook
     {
         private readonly LibraryContext _context;
-        public BookFunctionality(LibraryContext context) { 
-        
-             _context = context;
+        public BookFunctionality(LibraryContext context)
+        {
+
+            _context = context;
         }
 
         public void AddBook(Book book)
@@ -29,7 +31,8 @@ namespace LibraryManagment
         public void DeleteBook(int id)
         {
             var book = _context.Books.Find(id);
-            if (book != null) { 
+            if (book != null)
+            {
                 _context.Books.Remove(book);
                 _context.SaveChanges();
             }
@@ -40,11 +43,11 @@ namespace LibraryManagment
         }
         public List<Book> GetAllBooks()
         {
-           return _context.Books.ToList();
+            return _context.Books.ToList();
         }
 
-        
 
-       
+
+
     }
 }
